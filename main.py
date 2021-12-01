@@ -96,7 +96,6 @@ def dec_to_flp(a: float):
 
     #zaokrąglamy
     man_rounded = round_bin(man_normalized, man_len)
-    print(man_rounded)
     if len(man_rounded) > man_len + 1:
         print("Nastąpiło przeładowanie mantysy. należy przesunac wykladnik")
         print(f"Mantysa wynosi 1.{man_rounded[1:]}")
@@ -109,16 +108,20 @@ def dec_to_flp(a: float):
     man_rounded = man_rounded[:-1]
 
     #liczymy skuche
-    skucha = 2**(exp_len-1) - 1
+    skucha = (2**(exp_len-1)) - 1
     exp += skucha
 
-    print(f"Skucha wynosi: {skucha} \nWykładnik po dodaniu skuchy: {exp}")
+
+
+    print(f"\nSkucha wynosi: {skucha} \nWykładnik po dodaniu skuchy: {exp}")
 
     exp_bin = bin(exp)[2:]
+    while len(exp_bin) < exp_len:
+        exp_bin = "0"+exp_bin
 
     print(f"Wykładnik zapisany binarnie: {exp_bin}")
 
-    print(f"Odpowiedz: \n{sign} {exp_bin} {man_rounded} ")
+    print(f"\nOdpowiedz: \n{sign} {exp_bin} {man_rounded} ")
 
 a = float(input("Podaj liczbe do policzenia jebanego flp: "))
 dec_to_flp(a)
